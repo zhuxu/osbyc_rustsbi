@@ -1,4 +1,4 @@
-# 1. 定义交叉编译器前缀（根据您的工具链调整，常见有 riscv64-unknown-elf- 或 riscv64-linux-gnu-）
+# 1. 交叉编译器路径
 CROSS_COMPILE ?= /opt/gcc-riscv64-unknown-elf/bin/riscv64-unknown-elf-
 
 CC      := $(CROSS_COMPILE)gcc
@@ -11,7 +11,7 @@ OBJDUMP := $(CROSS_COMPILE)objdump
 # -mabi=lp64d: 对应的 ABI 接口
 # -ffreestanding: 声明为裸机环境，不假设标准库存在
 # -nostdlib: 不链接系统标准库
-CFLAGS  := -march=rv64gc -mabi=lp64d -Wall -mcmodel=medany -O2 -ffreestanding -nostdlib -ggdb
+CFLAGS  := -march=rv64gc -mabi=lp64d -Wall -mcmodel=medany -O0 -ffreestanding -nostdlib -ggdb
 LDFLAGS := -T linker.ld
 
 # 3. 定义目标文件和源文件
